@@ -1,0 +1,127 @@
+option.textwidth = 80
+textrules.style_textwidth = false
+textrules.style_semicolon = true
+option.indent = 4
+syntaxrules.tab_character = false
+syntaxrules.style_indent = false
+syntaxrules.multiline_if_begin = false
+syntaxrules.multiline_for_begin = false
+syntaxrules.style_trailingwhitespace = false
+textrules.style_directives = true # Compiler directives must be flush with the 1st column
+syntaxrules.style_operator_arithmetic = false
+syntaxrules.style_operator_boolean = false
+syntaxrules.style_operator_integer = false
+syntaxrules.style_operator_unary = false
+
+syntaxrules.style_keyword_0or1space = false
+syntaxrules.style_keyword_0space = false
+syntaxrules.style_keyword_1or2space = false
+syntaxrules.style_keyword_1space = false
+syntaxrules.style_keyword_construct = false
+syntaxrules.style_keyword_datatype = false # Overly restrictive.
+syntaxrules.style_keyword_end = false
+syntaxrules.style_keyword_maybelabel = false
+syntaxrules.style_keyword_new = false
+syntaxrules.style_keyword_newline = false
+syntaxrules.style_commaleading = false
+syntaxrules.eventlist_or = true # Only use ',' to seperate expressions in event lists
+syntaxrules.eventlist_comma_always_ff = false # must be opposite to 'eventlist_or'
+
+# Common to **ruleset-simsynth** (a subset of **ruleset-designintent**).
+	# Blocking assignments ('=') shouldn't be used in synchronous design blocks. It can be done when using the thing being assigned as a
+	# combinational intermediate variable (a style more used in VHDL)
+syntaxrules.blocking_assignment_in_always_ff = true  
+	# Can result in unexpected event ordering, and can result in behavioural mismatches at sim and synthesis
+syntaxrules.blocking_assignment_in_always_latch = true
+syntaxrules.non_blocking_assignment_in_always_comb = true #
+syntaxrules.case_default = true # Undefined case clauses in always_comb blocks can result in mismatches between synthesis and sim
+syntaxrules.enum_with_type = true # Make enum typing explicit (32-bit int by default), so it makes better synthesisable code
+	# Required to make a function synthisisable (automatic allocates replicates the function per concurrent process that uses it)
+syntaxrules.function_with_automatic = true  
+syntaxrules.keyword_forbidden_priority = true # Using priority in if/else or case statements may cause sim and synthesis mismatches
+syntaxrules.keyword_forbidden_unique = true
+syntaxrules.keyword_forbidden_unique0 = false
+syntaxrules.general_always_no_edge = true # Replace always@* or always@(..no edge..) with always_comb
+syntaxrules.operator_case_equality = false
+syntaxrules.procedural_continuous_assignment = false
+
+# Common to **ruleset-designintent**.
+syntaxrules.action_block_with_side_effect = true # Do not specify side effects within assert or wait_order action blocks.
+syntaxrules.default_nettype_none = true # make sure "`default_nettype none" is done so implicit net types cause compilation err
+syntaxrules.function_same_as_system_function = true # Make sure names of user defined functions don't match built-in system funcs
+syntaxrules.keyword_forbidden_always = true # Only allow 'always_comb', 'always_ff', and 'always_latch'. No just 'always'
+syntaxrules.keyword_forbidden_wire_reg = false
+syntaxrules.module_nonansi_forbidden = false
+syntaxrules.localparam_type_twostate = false
+syntaxrules.parameter_type_twostate = false
+syntaxrules.localparam_explicit_type = false
+syntaxrules.parameter_explicit_type = false
+syntaxrules.parameter_default_value = false
+syntaxrules.parameter_in_generate = false
+syntaxrules.parameter_in_package = false
+syntaxrules.genvar_declaration_in_loop = true # "for(genvar i=0; i < 10; i++)" minimizes genvar scope and makes it more readable
+syntaxrules.genvar_declaration_out_loop = false
+syntaxrules.keyword_forbidden_generate = false
+syntaxrules.keyword_required_generate = false
+	# Default clause is necessary to avoid synthesizer infering memory in comb blocks and avoid the synthesiser creating implicit latches in seq
+syntaxrules.explicit_case_default = true 
+syntaxrules.explicit_if_else = true # same reasoning as explicit_case_default
+syntaxrules.loop_statement_in_always_comb = false
+syntaxrules.loop_statement_in_always_ff = false
+syntaxrules.loop_statement_in_always_latch = false
+syntaxrules.sequential_block_in_always_comb = false
+syntaxrules.sequential_block_in_always_ff = false
+syntaxrules.sequential_block_in_always_latch = false
+syntaxrules.inout_with_tri = true # require inout ports to be 'tri' net type rather than 
+syntaxrules.input_with_var = false # require input ports to be declared as a 'var' 
+syntaxrules.output_with_var = false # require output ports to be declared as a 'var'
+syntaxrules.interface_port_with_modport = true # Specify the modport on the interface port. Without it, the interface port sigs are implictly inout.
+syntaxrules.interface_identifier_matches_filename = true # make sure the 
+option.re_forbidden_checker = ".*"
+syntaxrules.re_forbidden_checker = false
+option.re_forbidden_class = ".*"
+syntaxrules.re_forbidden_class = false
+option.re_forbidden_port_ref = ".*"
+syntaxrules.re_forbidden_port_ref = false
+option.re_forbidden_property = ".*"
+syntaxrules.re_forbidden_property = false
+option.re_forbidden_sequence = ".*"
+syntaxrules.re_forbidden_sequence = false
+option.re_forbidden_task = ".*"
+syntaxrules.re_forbidden_task = false
+syntaxrules.lowercamelcase_package = false
+syntaxrules.uppercamelcase_module = false
+option.prefix_interface = "ifc_"
+syntaxrules.prefix_interface = false
+option.prefix_instance = "u_"
+syntaxrules.prefix_instance = false
+option.prefix_label = "l_"
+syntaxrules.generate_case_with_label = false
+syntaxrules.generate_for_with_label = false
+syntaxrules.generate_if_with_label = false
+option.prefix_inout = "b_"
+syntaxrules.prefix_inout = false
+option.prefix_input = "i_"
+syntaxrules.prefix_input = false
+option.prefix_output = "o_"
+syntaxrules.prefix_output = false
+option.re_required_port_interface = "^[a-z]+[a-zA-Z0-9_]*$"
+syntaxrules.re_required_port_interface = false
+option.re_required_function = "^([a-z]{1,1}[a-z0-9]{0,9}|f_[a-zA-Z0-9_]+)$"
+syntaxrules.re_required_function = false
+option.re_required_localparam = "^[A-Z]+[A-Z0-9_]*$"
+syntaxrules.re_required_localparam = false
+option.re_required_parameter = "^[A-Z]+[A-Z0-9_]*$"
+syntaxrules.re_required_parameter = false
+option.re_required_genvar = "^[a-z]{1,3}$"
+syntaxrules.re_required_genvar = false
+
+#
+# Verilog specific rules
+#
+syntaxrules.general_always_level_sensitive = true # Replace always@(..no edge..) with always@*. To avoid combinatorial/stateful mistakes
+syntaxrules.blocking_assignment_in_always_at_edge = true # same as always_ff but with verilog.
+syntaxrules.keyword_forbidden_always_comb = false # only use always @*, really only used in verilog
+syntaxrules.keyword_forbidden_always_ff = false # No using always_ff. Only used if compiling with verilog.
+syntaxrules.keyword_forbidden_always_latch = false # no using always_latch. Use always @* or always @(en) instead
+syntaxrules.keyword_forbidden_logic = false # only use wire and reg, and not logic
