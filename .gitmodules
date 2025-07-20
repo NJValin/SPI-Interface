@@ -1,0 +1,3 @@
+[submodule "blocks/common_blocks"]
+	path = blocks/common_blocks
+	url = git@github.com:NJValin/SystemVerilog-Modules.git
